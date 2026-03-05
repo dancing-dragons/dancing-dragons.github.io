@@ -1,0 +1,339 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Dragon Team — Strategic coaching partnerships for enterprise growth." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0e0e14" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Dragon Team</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Dragon Team`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.png" />
+  </head>
+  <body>
+    <nav class="nav" id="main-nav">
+      <div class="nav__inner container">
+        <a href="/" class="nav__logo" id="nav-logo">
+          <svg class="nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M16 2L28 8L16 14L4 8L16 2Z" fill="currentColor" opacity="0.15"/>
+            <path d="M16 14V30" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <span class="nav__logo-text">
+            <span class="nav__logo-dragon">DRAGON</span><span class="nav__logo-team">TEAM</span>
+          </span>
+        </a>
+
+        <div class="nav__links" id="nav-links">
+          <a href="/services" class="nav__link" id="nav-services">Services</a>
+          <a href="/case-studies" class="nav__link" id="nav-case-studies">Case Studies</a>
+          <a href="/about" class="nav__link" id="nav-about">About</a>
+          <a href="/partners" class="nav__link" id="nav-partners">Partners</a>
+          <a href="/contact" class="btn btn--primary nav__cta" id="nav-contact">Get in Touch</a>
+        </div>
+
+        <button class="nav__mobile-toggle" id="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer" id="site-footer">
+      <div class="container">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <a href="/" class="nav__logo">
+              <svg class="nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M16 2L28 8L16 14L4 8L16 2Z" fill="currentColor" opacity="0.15"/>
+                <path d="M16 14V30" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.6"/>
+              </svg>
+              <span class="nav__logo-text">
+                <span class="nav__logo-dragon">DRAGON</span><span class="nav__logo-team">TEAM</span>
+              </span>
+            </a>
+            <p class="footer__tagline">Strategic coaching partnerships<br/>for enterprise growth.</p>
+          </div>
+
+          <div class="footer__columns">
+            <div class="footer__col">
+              <h4 class="footer__col-title">Solutions</h4>
+              <a href="/services" class="footer__link">Executive Coaching</a>
+              <a href="/services" class="footer__link">Team Development</a>
+              <a href="/services" class="footer__link">Leadership Programs</a>
+              <a href="/services" class="footer__link">Change Management</a>
+            </div>
+            <div class="footer__col">
+              <h4 class="footer__col-title">Company</h4>
+              <a href="/about" class="footer__link">About Us</a>
+              <a href="/case-studies" class="footer__link">Case Studies</a>
+              <a href="/partners" class="footer__link">Partner Program</a>
+              <a href="/contact" class="footer__link">Contact</a>
+            </div>
+            <div class="footer__col">
+              <h4 class="footer__col-title">Connect</h4>
+              <a href="https://dancingdragons.cc" target="_blank" class="footer__link">Dancing Dragons ↗</a>
+              <a href="https://linkedin.com" target="_blank" class="footer__link">LinkedIn ↗</a>
+              <a href="mailto:partners@dragonteam.co" class="footer__link">partners@dragonteam.co</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copy">&copy; {new Date().getFullYear()} Dragon Team. All rights reserved.</p>
+          <p class="footer__copy">A <a href="https://dancingdragons.cc" target="_blank" class="footer__link--inline">Dancing Dragons</a> company.</p>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      /* ── Navigation ── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: var(--nav-height);
+        background: rgba(14, 14, 20, 0.8);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid var(--dt-border);
+      }
+
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .nav__logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav__logo-icon {
+        width: 32px;
+        height: 32px;
+        color: var(--dt-green);
+      }
+
+      .nav__logo-text {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .nav__logo-dragon {
+        color: var(--dt-text-primary);
+      }
+
+      .nav__logo-team {
+        color: var(--dt-green);
+      }
+
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xl);
+      }
+
+      .nav__link {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--dt-text-secondary);
+        transition: color var(--duration-fast) var(--ease-out);
+        position: relative;
+      }
+
+      .nav__link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--dt-green);
+        transition: width var(--duration-normal) var(--ease-out);
+      }
+
+      .nav__link:hover {
+        color: var(--dt-text-primary);
+      }
+
+      .nav__link:hover::after {
+        width: 100%;
+      }
+
+      .nav__cta {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.85rem;
+      }
+
+      .nav__mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+      }
+
+      .nav__mobile-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--dt-text-secondary);
+        border-radius: 2px;
+        transition: all var(--duration-fast) var(--ease-out);
+      }
+
+      /* ── Footer ── */
+      .footer {
+        border-top: 1px solid var(--dt-border);
+        padding: var(--space-4xl) 0 var(--space-xl);
+        background: var(--dt-black);
+      }
+
+      .footer__top {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-4xl);
+        margin-bottom: var(--space-3xl);
+      }
+
+      .footer__brand {
+        max-width: 300px;
+      }
+
+      .footer__tagline {
+        margin-top: var(--space-md);
+        font-size: 0.95rem;
+        color: var(--dt-text-muted);
+        line-height: 1.6;
+      }
+
+      .footer__columns {
+        display: flex;
+        gap: var(--space-3xl);
+      }
+
+      .footer__col {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+
+      .footer__col-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--dt-text-primary);
+        margin-bottom: var(--space-sm);
+      }
+
+      .footer__link {
+        font-size: 0.9rem;
+        color: var(--dt-text-muted);
+        transition: color var(--duration-fast) var(--ease-out);
+      }
+
+      .footer__link:hover {
+        color: var(--dt-green);
+      }
+
+      .footer__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: var(--space-xl);
+        border-top: 1px solid var(--dt-border);
+      }
+
+      .footer__copy {
+        font-size: 0.8rem;
+        color: var(--dt-text-muted);
+      }
+
+      .footer__link--inline {
+        color: var(--dt-green);
+        transition: opacity var(--duration-fast);
+      }
+
+      .footer__link--inline:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 768px) {
+        .nav__links {
+          display: none;
+        }
+
+        .nav__mobile-toggle {
+          display: flex;
+        }
+
+        .footer__top {
+          flex-direction: column;
+          gap: var(--space-2xl);
+        }
+
+        .footer__columns {
+          flex-wrap: wrap;
+          gap: var(--space-2xl);
+        }
+
+        .footer__bottom {
+          flex-direction: column;
+          gap: var(--space-sm);
+          text-align: center;
+        }
+      }
+    </style>
+
+    <script>
+      // Navbar scroll effect
+      const nav = document.getElementById('main-nav');
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 10) {
+            nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+          } else {
+            nav.style.borderBottomColor = 'rgba(255,255,255,0.06)';
+          }
+        });
+      }
+
+      // Mobile toggle
+      const toggle = document.getElementById('nav-toggle');
+      const links = document.getElementById('nav-links');
+      if (toggle && links) {
+        toggle.addEventListener('click', () => {
+          links.classList.toggle('nav__links--open');
+        });
+      }
+    </script>
+  </body>
+</html>
